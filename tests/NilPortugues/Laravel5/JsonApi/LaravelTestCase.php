@@ -11,13 +11,14 @@
 namespace NilPortugues\Tests\Laravel5\JsonApi;
 
 use Illuminate\Events\Dispatcher;
-use Illuminate\Filesystem\ClassFinder;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Routing\Router;
+use NilPortugues\Laravel5\JsonApi\ClassFinder;
 use NilPortugues\Tests\App\Transformers\EmployeesTransformer;
 use NilPortugues\Tests\App\Transformers\OrdersTransformer;
 use Psr\Log\NullLogger;
+use Illuminate\Contracts\Container\Container;
 
 /**
  * Class LaravelTestCase.
@@ -96,7 +97,7 @@ class LaravelTestCase extends \Illuminate\Foundation\Testing\TestCase
     {
         $app->instance('request', (new \Illuminate\Http\Request())->instance());
         $app->make('Illuminate\Foundation\Http\Kernel', [$app, $this->getRouter()])->bootstrap();
-        $app->bind('Illuminate\Contracts\Debug\ExceptionHandler', new \NilPortugues\Tests\App\Exceptions\Handler(new NullLogger()));
+        // $app->bind('Illuminate\Contracts\Debug\ExceptionHandler', new \NilPortugues\Tests\App\Exceptions\Handler(new NullLogger()));
     }
 
     /**

@@ -23,8 +23,7 @@ class JsonApiControllerTest extends LaravelTestCase
 
     public function testListActionCanSort()
     {
-        $this->call('GET', 'http://localhost/employees?sort=-id');
-        $response = $this->response;
+        $response = $this->call('GET', 'http://localhost/employees?sort=-id');
 
         $this->assertEquals(200, $response->getStatusCode());
         $this->assertEquals('application/vnd.api+json', $response->headers->get('Content-type'));
@@ -33,8 +32,7 @@ class JsonApiControllerTest extends LaravelTestCase
 
     public function testListActionCanFilterMembers()
     {
-        $this->call('GET', 'http://localhost/employees?fields[employee]=company,first_name');
-        $response = $this->response;
+        $response = $this->call('GET', 'http://localhost/employees?fields[employee]=company,first_name');
 
         $this->assertEquals(200, $response->getStatusCode());
         $this->assertEquals('application/vnd.api+json', $response->headers->get('Content-type'));
@@ -73,7 +71,7 @@ class JsonApiControllerTest extends LaravelTestCase
 }
 JSON;
         $response = $this->call('PATCH', 'http://localhost/employees/1', json_decode($content, true), [], [], [], '');
-        
+
         $this->assertEquals(200, $response->getStatusCode());
         $this->assertEquals('application/vnd.api+json', $response->headers->get('Content-type'));
     }
